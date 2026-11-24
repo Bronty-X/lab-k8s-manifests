@@ -19,7 +19,7 @@ spec:
           enableWarp: false
 
           ingress:
-            - hostname: kl.a-lp.com
+            - hostname: *.kl.a-lp.com
               service: http://ingress-nginx-controller.nginx-ingress.svc.cluster.local:80
 
         replicaCount: 2
