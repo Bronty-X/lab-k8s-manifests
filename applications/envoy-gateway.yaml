@@ -6,16 +6,22 @@ metadata:
 spec:
   project: default
   source:
-    chart: gateway-helm
     repoURL: docker.io/envoyproxy
+    chart: gateway-helm
     targetRevision: v1.10.0
+    helm:
+      parameters:
+        - name: crds.enabled
+          value: "false"
+
   destination:
-    namespace: envoy-gateway-system
     server: https://kubernetes.default.svc
+    namespace: envoy-gateway-system
+
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-    - ServerSideApply=true
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
